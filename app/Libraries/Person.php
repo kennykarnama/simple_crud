@@ -43,17 +43,30 @@ class Person
 			
 			$attributes = explode(",", $csv);
 
-			$this->nama = $attributes[0];
+			if(strcmp($attributes[0], "Not Found")!=0){
+				$this->nama = $attributes[0];
 
 			$this->email = $attributes[1];
 
 			$this->dateOfBirth = $attributes[2];
 
 			$this->alamat  =$attributes[3];
+	
+			}
 
+			
 		}
 
 		return $attributes;
+	}
+
+	public function isEmptyAttributes()
+	{
+		# code...
+		return (
+			empty($this->nama) && empty($this->email) && empty($this->dateOfBirth) 
+				&& empty($this->alamat)
+			);
 	}
 
 	public function getNama()

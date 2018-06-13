@@ -5,14 +5,34 @@
 	<section class="section">
 	    <div class="container">
 
-      <article class="message is-info">
+	  @php
+	  	
+	  	$message = '';
+
+	  	$typeMessage = '';
+
+	  	if($person->isEmptyAttributes()){
+	  		$message = 'Not Found';
+	  		$typeMessage = 'is-danger';
+	  	}
+	  	else{
+
+	  		$message = 'Detail';
+	  		$typeMessage = 'is-info';
+
+	  	}
+
+	  @endphp  	
+	  
+      <article class="message {{$typeMessage}}">
       <div class="message-header">
-        <p>Detail</p>
+        <p>{{$message}}</p>
         <button class="delete" aria-label="delete"></button>
       </div>
     </article>
 
 
+    @if(!$person->isEmptyAttributes())
 	    <form>
 	    	
 
@@ -48,6 +68,8 @@
 
 	    	
 	    </form>
+
+	    @endif
 		     </section>
 
 

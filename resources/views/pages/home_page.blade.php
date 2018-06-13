@@ -26,7 +26,7 @@
 			<div class="field">
 			  <label class="label">Date Of Birth</label>
 			  <div class="control">
-			    <input class="input" type="text" placeholder="Date Of Birth" id="date-of-birth" name="date-of-birth">
+			    <input class="input sr-date" type="text"  id="date-of-birth" name="date-of-birth">
 			  </div>
 			</div>
 
@@ -78,7 +78,7 @@
 
   <script type="text/javascript">
 
-
+    var dateOfBirth;
 
   	$(document).ready(function () {
   		// body...
@@ -93,6 +93,17 @@
   			document.getElementById("form").reset();
   		});
 
+  
+
+    dateOfBirth = new bulmaCalendar( document.getElementById( 'date-of-birth' ),{
+     
+    closeOnSelect: true,
+    // callback function
+    onSelect: null,   // callback(new Date(year, month, day))
+    onOpen: null,     // callback(this)
+    onClose: null,    // callback(this)
+    onRender: null    // callback(this)
+    });
         // process the form
    
 
