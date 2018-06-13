@@ -10,7 +10,7 @@
 				 
 				  </div>
 				  <div class="message-body">
-				   {{$message}}
+				   {{Session::get('message')}}
 				  </div>
 				</article>
 		</div>

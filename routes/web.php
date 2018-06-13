@@ -22,3 +22,4 @@ Route::post('/create', ['uses' => 'Pages\HomeController@create'])->name('home.cr
 
 Route::get('/detail/{fileName}', ['uses' => 'Pages\HomeController@retrieve'])->name('home.retrieve');
 
+Route::get('/submission_result', ['uses' => 'Pages\HomeController@submission_resut'])->name('home.submission_result');

@@ -5,7 +5,7 @@
 	<section class="section">
 	    <div class="container">
 
-	    <form name="form" id="form" method="POST" action="{{route('home.create')}}" onsubmit="return validateForm()">
+	    <form>
 	    	
 	    	 @csrf
 
@@ -40,7 +40,7 @@
 			<div class="field is-grouped">
 				  <p class="control">
 
-				  <button class="button is-link" type="submit">
+				  <button class="button is-link" id="btn-submit-form">
 				  	Submit
 				  </button>
 				   
@@ -78,61 +78,8 @@
 
   <script type="text/javascript">
 
-  function validateForm() {
-  	// body...
-  	var inputs = document.forms["form"].getElementsByTagName("input");
-
-  	var textareas = document.forms["form"].getElementsByTagName("textarea");
 
 
-  	var err = [];
-
-    for(var i=0; i < inputs.length; i++){
-
-    	
-    	if(inputs[i].value == ""){
-
-    		err.push(inputs[i].placeholder);
-
-
-    	}
-    	
-    }
-
-    for(var i=0; i < textareas.length; i++){
-
-    	if(textareas[i].value == ""){
-
-    		err.push(textareas[i].placeholder);
-
-
-    	}
-    }
-
-    if(err.length > 0){
-
-    	var str = "";
-
-    	for(var i=0;i<err.length;i++){
-    		var sub_str = "<p><b>"+err[i]+" </b>tidak boleh kosong"+"<p>";
-    		str+=sub_str;
-    	}
-
-
-    	$('#modal-pesan-error-form .modal-card-body').html(str);
-
-    	$('#modal-pesan-error-form').addClass('is-active');
-
-    	return false;
-    
-    }
-
-    else{
-    	return true;
-    }
-
-    
-  }
   	$(document).ready(function () {
   		// body...
 
@@ -145,6 +92,67 @@
   			// body...
   			document.getElementById("form").reset();
   		});
+
+        // process the form
+   
+
+      $('#btn-submit-form').click(function (e) {
+        // body...
+        e.preventDefault();
+
+         var formData = {
+            'nama'              : $('input[name=nama]').val(),
+            'email'             : $('input[name=email]').val(),
+            'date-of-birth'     : $('input[name=date-of-birth').val(),
+            'alamat'            : $.trim($("#alamat").val())
+        };
+
+        // process the form
+
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : "{{route('home.create')}}", // the url where we want to POST
+            data        : formData, // our data object
+            dataType    : 'json', // what type of data do we expect back from the server
+            encode      : true
+        })
+            // using the done promise callback
+            .done(function(data) {
+
+              if(data.status == 1){
+                window.location.replace("{{route('home.submission_result')}}");
+                
+              }
+              else{
+
+                  var str = "";
+
+                   for(var i=0;i<data.errors.length;i++){
+                     var sub_str = "<p><b>"+data.errors[i]+" </b>"+"<p>";
+                     str+=sub_str;
+                   }
+
+                   $('#modal-pesan-error-form .modal-card-body').html(str);
+
+                   $('#modal-pesan-error-form').addClass('is-active');
+              }
+
+                
+        });
+
+
+      });
+
+      
+       
+
+       
   	});
   </script>
 
