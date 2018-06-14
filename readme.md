@@ -51,6 +51,9 @@ From demo page, basically this app provides functionalities :
 
 Each of data submitted will be stored in txt file in comma separated values. **So you are expected not to include any additionals comma delimiter in each form fields you'll fill.** 
 
+```for example : surabaya Jawa Timur (correct)```
+              ```surabaya, Jawa Timur (incorrect)```
+
 [Just watch this video for the tutorial](https://drive.google.com/open?id=1K1Z5uJxbTdBkpg0s8_t6nqYxbUc-VxNN) 
 
 **Testing**
