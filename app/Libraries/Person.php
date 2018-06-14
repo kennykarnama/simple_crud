@@ -28,32 +28,34 @@ class Person
 	public function formatToCSV()
 	{
 		# code...
+
+		if($this->isEmptyAttributes()){
+			return "";
+		}
+
 		$csv = $this->nama.",".$this->email.",".$this->dateOfBirth.",".$this->alamat;
 
 		return $csv;
 	}
 
-	public function retrieveFromCSV($csv = '')
+	public function retrieveFromCSV($csv)
 	{
 		# code...
 
 		$attributes = array();
 
-		if(strcmp($csv, '')!=0){
+		if(!is_null($csv) && !empty($csv)){
 			
 			$attributes = explode(",", $csv);
 
-			if(strcmp($attributes[0], "Not Found")!=0){
 				$this->nama = $attributes[0];
 
-			$this->email = $attributes[1];
+				$this->email = $attributes[1];
 
-			$this->dateOfBirth = $attributes[2];
+				$this->dateOfBirth = $attributes[2];
 
-			$this->alamat  =$attributes[3];
-	
-			}
-
+				$this->alamat  =$attributes[3];
+			
 			
 		}
 
@@ -91,5 +93,13 @@ class Person
 	{
 		# code...
 		return $this->alamat;
+	}
+
+	public function getAttributes()
+	{
+		# code...
+		$arr_attributes = get_object_vars($this);
+
+		return $arr_attributes;
 	}
 }

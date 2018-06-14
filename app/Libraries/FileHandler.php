@@ -12,39 +12,63 @@ class FileHandler
 	
 	private $location;
 
-	function __construct($location)
+	function __construct($location = '')
 	{
 		# code...
 		$this->location = $location;
 	}
 
-	public function retrieveFileContents($fileName,$fileExtension)
+	public function retrieveFileContents($fileName = '',$fileExtension = '')
 	{
 		# code...
 
-		$exists = Storage::disk($this->location)->exists($fileName.'.'.$fileExtension);
+		try {
 
+			$exists = Storage::disk($this->location)->exists($fileName.'.'.$fileExtension);
 
+			if($exists){
 
-		if($exists){
+				$contents = Storage::disk($this->location)->get($fileName.'.'.$fileExtension);
 
-			$contents = Storage::disk($this->location)->get($fileName.'.'.$fileExtension);
+				return $contents;
+			}
 
-			return $contents;
+			else{
+				return null;
+			}
+			
+		} catch (\Exception $e) {
+
+			return null;
+			
 		}
 
-		else{
-			return "Not Found";
-		}
+		
 	}
 
-	public function writeToFile($fileName, $fileContent,$fileExtension)
+	public function writeToFile($fileName = '', $fileContent = '',$fileExtension = '')
 	{
 		# code...
-		Storage::disk($this->location)->put($fileName.'.'.$fileExtension, $fileContent);
 
-		$exists = Storage::disk($this->location)->exists($fileName.'.'.$fileExtension);
+		try {
 
-		return $exists;
+			Storage::disk($this->location)->put($fileName.'.'.$fileExtension, $fileContent);
+
+			$exists = Storage::disk($this->location)->exists($fileName.'.'.$fileExtension);
+
+			return $exists;
+			
+		} catch (\Exception $e) {
+
+			return false;
+			
+		}
+		
+	}
+
+	public function getLocation()
+	{
+		# code...
+		return $this->location;
 	}
 }
