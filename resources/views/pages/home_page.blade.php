@@ -5,6 +5,12 @@
 	<section class="section">
 	    <div class="container">
 
+      <article class="message">
+      <div class="message-header">
+        <p>Simple CRUD</p>
+      </div>
+    </article>
+
 	    <form>
 	    	
 	    	 @csrf
