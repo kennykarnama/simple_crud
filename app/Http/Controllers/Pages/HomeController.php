@@ -106,8 +106,6 @@ class HomeController extends Controller
 
              if($exist){
 
-
-
                  $message = "Terima kasih telah mengisi form";
              
              }
@@ -130,41 +128,4 @@ class HomeController extends Controller
 
     }
 
-
-    // public function create(Request $request)
-    // {
-    // 	# code...
-    // 	$nama = $request['nama'];
-
-    // 	$email = $request['email'];
-    	
-    // 	$date_of_birth = $request['date-of-birth'];
-
-    // 	$alamat = $request['alamat'];
-
-    // 	$person = new Person($nama,$email,$date_of_birth,$alamat);
-
-    // 	$current_date =  date('dmYHis');
-
-    // 	$fileName = $nama.'-'.$current_date;
-
-    // 	$fileExtension = "txt";
-
-    // 	$fileContents = $person->formatToCSV();
-
-    // 	$exist = $this->fileHandler->writeToFile($fileName,$fileContents,$fileExtension);
-
-    // 	$message = '';
-
-    // 	if($exist){
-    // 		$message = "Terima kasih telah mengisi form";
-    // 	}
-    // 	else{
-    // 		$message = "Gagal di submit";
-    // 	}
-
-    // 	return view('pages.status_create_page',[
-    // 		'message'=>$message
-    // 		]);
-    // }
 }
