@@ -58,7 +58,7 @@ Each of data submitted will be stored in txt file in comma separated values. **S
 Although it is a simple project, but it is equiped with unit testing using php-unit and integration with [scrutinizer-ci](https://scrutinizer-ci.com). 
 
 - To run php-unit, simply run `./vendor/bin/phpunit` in simple_crud folder.
-- For scrutinizer-ci, you could see the result by finding repository with name `kennykarnama/simple_crud`
+- For scrutinizer-ci, you could see the result [here](https://scrutinizer-ci.com/g/kennykarnama/simple_crud/)
 
 
 
